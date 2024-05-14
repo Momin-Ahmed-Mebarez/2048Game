@@ -30,10 +30,20 @@ def moveLeft(board):
                 while(x-1 != -1 and (board[i][x-1] == element or board[i][x-1] == 0)):
                     board[i][x] = 0
                     x -= 1
-                    board[i][x] = compine(element,board[i][x])
-                    
+                    board[i][x] = compine(element,board[i][x])      
     return board
 
+
+def moveUp(board):
+    for i,row in enumerate(board):
+        for j,element in enumerate(board[i]):
+            if(element != 0):
+                y = i
+                while(y-1 != -1 and (board[y-1][j] == element or board[y-1][j] == 0)):
+                    board[y][j] = 0
+                    y -= 1
+                    board[y][j] = compine(element,board[y][j])
+    return board
 
 #Can be replaced with a flag in moveLeft() to detrmine whether or not to reverse
 def moveRight(board):
@@ -50,14 +60,12 @@ def moveRight(board):
         board[i] = row
     return board
 
-"""
-def moveDown(board):
-    for i, 
-"""
+
+
 
 
 def start():
-    board = [[32,0,0,32],[0,0,0,0],[0,0,0,0],[0,0,0,0]]
+    board = [[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]]
     game = True
     
     board = generateTwo(board)
@@ -72,7 +80,7 @@ def start():
         elif(cmd.lower() == "d"):
             board = moveRight(board)
         elif(cmd.lower()=="w"):
-            pass
+            board = moveUp(board)
         elif(cmd.lower()=="s"):
             pass
         else:
